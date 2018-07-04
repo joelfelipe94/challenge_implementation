@@ -1,28 +1,24 @@
 from flask_restful import Resource
 from flask_restful import reqparse
-from Databases.config_database_A import ConfigDatabaseA
-from authnetication_manager_A import AuthenticationManagerA
-class GetPerson(Resource):
-    @AuthenticationManagerA.auth.login_required
+from Databases.config_database_B import ConfigDatabaseB
+from authnetication_manager_B import AuthenticationManagerB
+class GetAllPeople(Resource):
+    @AuthenticationManagerB.auth.login_required
     def post(self):
         try: 
             # Parse the arguments
-            parser = reqparse.RequestParser()
-            parser.add_argument('cpf', type=str)
-            args = parser.parse_args()
-
-            _cpf = args['cpf']
-
-            mysql = ConfigDatabaseA.getMysql()
+            mysql = ConfigDatabaseB.getMysql()
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.callproc('BuscaPessoa',(_cpf,))
+            cursor.callproc('BuscaPessoas')
             data = cursor.fetchall()
-            debts_list=[]
+            debts_list=[];
             for item in data:
                 i = {
-                    'nome':item[0],
+                    'idade':item[0],
                     'endereco':item[1],
+                    'fonte_de_renda':item[2],
+                    'renda':item[3],
                 }
                 debts_list.append(i)
 
