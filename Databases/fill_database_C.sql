@@ -300,4 +300,3 @@ INSERT INTO `monvimento` VALUES ('0','68227099383','9612.16','Repellendus minus 
 ('916986153','79069759220','64.35','Alias qui ratione ipsum perspiciatis accusamus et magnam. Ullam est ut ipsa nihil iste. Occaecati commodi consequatur est et.'),
 ('930131654','83457091653','7697.67','Et qui dolores maiores. Sunt exercitationem perferendis fugit sed. A perferendis maiores repudiandae minus deserunt. Exercitationem sint aut culpa magni eius voluptas.'),
 ('982240031','83333202455','4.62','Harum in cupiditate sunt voluptatum et. Est est at quas molestiae consectetur et natus. Dolorem ipsam quis quis esse voluptatibus sunt hic.'); 
-consulta

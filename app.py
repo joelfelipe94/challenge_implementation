@@ -10,6 +10,7 @@ from Resources.get_all_people import GetAllPeople
 from Resources.get_all_debts import GetAllDebts
 from Resources.get_all_properties import GetAllProperties
 from Resources.get_all_queries import GetAllQueries
+from Resources.get_movements import GetMovements
 from Databases.config_database_A import ConfigDatabaseA
 from Databases.config_database_B import ConfigDatabaseB
 from Databases.config_database_C import ConfigDatabaseC
@@ -36,7 +37,7 @@ api.add_resource(GetAllPeople, '/GetAllPeople')
 
 #dataset C
 api.add_resource(GetAllQueries, '/GetAllQueries')
-
+api.add_resource(GetMovements, '/GetMoviments')
 if __name__ == '__main__':
     app.run(debug=True, port=5001, ssl_context=('certificate/cert.pem', 'certificate/key.pem'))
 
