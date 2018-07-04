@@ -1,7 +1,7 @@
 CREATE DATABASE base_A;
 
 CREATE USER 'userA'@'localhost' IDENTIFIED BY 'userA';
-GRANT ALL PRIVILEGES ON base_A.* To 'userA'@'localhost';-- REQUIRE SSL;
+GRANT ALL PRIVILEGES ON base_A.* To 'userA'@'localhost' REQUIRE X509;
 flush privileges;
 
 CREATE TABLE `base_A`.`usuario`( -- dados usados para a autenticação
@@ -37,9 +37,11 @@ DELIMITER ;
 
 DELIMITER $$
 USE `base_A`$$
-CREATE PROCEDURE `BuscaPessoas` ()
+CREATE PROCEDURE `BuscaPessoa` (
+    in p_cpf NUMERIC(11)
+)
 BEGIN
-    select nome, CAST(cpf as CHAR(15)), endereco from pessoa; 
+    select nome, endereco from pessoa where cpf=p_cpf; 
 END$$
 DELIMITER ;
 
