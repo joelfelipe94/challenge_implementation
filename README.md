@@ -36,7 +36,7 @@ mysql --ssl-ca=ca.pem
 # Python Application
 This python application offers the client a connetion using HTTPs protocol. The certificates ware self-generate to this test and can be found in the `certificate` folder. In pactice it should be certified by a CA. 
 
-In this application the user can acess the database information through some urls. Each url is responsable to acess a single database. To acess resource from databases A and B the user must authenticate.
+In this application the user can acess the database information through some urls. Each url is responsable to acess a single database. To acess resource from databases A and B the user must authenticate and C resources can be acessed without any authentication. 
 
 # Author Comments
 I would like to apologise for the poor quality of my solution. This result is due to two reasons: First, I do not know most of the listed technologies; Second, my throat is inflamed and I am having fever from time to time. Althought, I would not quit without give it a try.
