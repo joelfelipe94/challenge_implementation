@@ -12,7 +12,7 @@ CREATE TABLE `base_C`.`consulta` (
 `resultado` TEXT NOT NULL,
 PRIMARY KEY (`id_consulta`));
 
-CREATE TABLE `base_C`.`monvimento` (
+CREATE TABLE `base_C`.`movimento` (
 `id_movimento` INT NOT NULL,
 `cpf` NUMERIC(11) NOT NULL,
 `valor` NUMERIC(15,2) NOT NULL,    
@@ -32,5 +32,16 @@ CREATE PROCEDURE `BuscaConsultas` (
 )
 BEGIN
     select id_consulta, CAST(cpf as CHAR(11)), DATE_FORMAT(data_hora, '%h:%m:%s %d-%m-%Y'), resultado from consulta; 
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+USE `base_C`$$
+CREATE PROCEDURE `BuscaMovimentosCPF` (
+    IN p_cpf NUMERIC(11) 
+)
+BEGIN
+    select id_movimento, CAST(valor as CHAR(15)), descricao from movimento where cpf = p_cpf; 
 END$$
 DELIMITER ;
