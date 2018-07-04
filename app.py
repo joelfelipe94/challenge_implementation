@@ -12,6 +12,7 @@ from Resources.create_user import CreateUser
 from Resources.create_user_A import CreateUserA
 from Databases.config_database import ConfigDatabase
 from Databases.config_database_A import ConfigDatabaseA
+from Resources.get_all_debts import GetAllDebts
 import sys, inspect 
 
 app = Flask(__name__)
@@ -19,8 +20,10 @@ api = Api(app)
 ConfigDatabase(app) #it configures a database connection
 ConfigDatabaseA(app) #it configures a databaseA connection
 
+# TODO make this association automatic
 api.add_resource(CreateUser, '/CreateUser')
 api.add_resource(CreateUserA, '/CreateUserA')
+api.add_resource(GetAllDebts, '/GetAllDebts')
 api.add_resource(AuthenticateUser, '/AuthenticateUser')
 api.add_resource(GetAllItems, '/GetAllItems')
 api.add_resource(AddItem, '/AddItem')
