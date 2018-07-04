@@ -1,20 +1,20 @@
 from flask import Flask
 from flask_restful import Api
 from flaskext.mysql import MySQL
-class ConfigDatabase:
+class ConfigDatabaseB:
     _mysql = None
     @staticmethod
     def getMysql():
-        return ConfigDatabase._mysql 
+        return ConfigDatabaseB._mysql 
     def __init__(self, app):
         """ Virtually private constructor. """
-        if ConfigDatabase._mysql != None:
+        if ConfigDatabaseB._mysql != None:
             raise Exception("This class is already configured!")
         else:
-            ConfigDatabase._mysql = MySQL()
+            ConfigDatabaseB._mysql = MySQL()
             # MySQL configurations
-            app.config['MYSQL_DATABASE_USER'] = 'joel'
-            app.config['MYSQL_DATABASE_PASSWORD'] = 'akhenatom94'
-            app.config['MYSQL_DATABASE_DB'] = 'ItemListDb'
+            app.config['MYSQL_DATABASE_USER'] = 'userB'
+            app.config['MYSQL_DATABASE_PASSWORD'] = 'userB'
+            app.config['MYSQL_DATABASE_DB'] = 'base_B'
             app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-            ConfigDatabase._mysql.init_app(app)
+            ConfigDatabaseB._mysql.init_app(app)
