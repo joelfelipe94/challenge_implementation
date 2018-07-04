@@ -7,11 +7,12 @@ from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
 from Resources.get_all_items import GetAllItems
 from Resources.add_item import AddItem
-from Resources.authenticate_user import AuthenticateUser
 from Resources.create_user import CreateUser
 from Resources.create_user_A import CreateUserA
+from Resources.get_person import GetPerson
 from Databases.config_database import ConfigDatabase
 from Databases.config_database_A import ConfigDatabaseA
+from Resources.get_all_debts import GetAllDebts
 import sys, inspect 
 
 app = Flask(__name__)
@@ -19,9 +20,14 @@ api = Api(app)
 ConfigDatabase(app) #it configures a database connection
 ConfigDatabaseA(app) #it configures a databaseA connection
 
-api.add_resource(CreateUser, '/CreateUser')
+# TODO make this associations automatically
+#database A
 api.add_resource(CreateUserA, '/CreateUserA')
-api.add_resource(AuthenticateUser, '/AuthenticateUser')
+api.add_resource(GetAllDebts, '/GetAllDebts')
+api.add_resource(GetPerson, '/GetPerson')
+
+#basic idea
+api.add_resource(CreateUser, '/CreateUser')
 api.add_resource(GetAllItems, '/GetAllItems')
 api.add_resource(AddItem, '/AddItem')
 

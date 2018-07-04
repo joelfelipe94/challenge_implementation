@@ -1,7 +1,7 @@
 CREATE DATABASE base_A;
 
 CREATE USER 'userA'@'localhost' IDENTIFIED BY 'userA';
-GRANT ALL PRIVILEGES ON base_A.* To 'userA'@'localhost';-- REQUIRE SSL;
+GRANT ALL PRIVILEGES ON base_A.* To 'userA'@'localhost' REQUIRE X509;
 flush privileges;
 
 CREATE TABLE `base_A`.`usuario`( -- dados usados para a autenticação
@@ -23,16 +23,28 @@ CREATE TABLE `base_A`.`divida` (
 PRIMARY KEY (`id_divida`),
 FOREIGN KEY (`cpf`) REFERENCES `base_A`.`pessoa`(`cpf`));
 
+DROP PROCEDURE `BuscaDivida`;
 
 DELIMITER $$
 USE `base_A`$$
 CREATE PROCEDURE `BuscaDividas` (
-in p_cpf int
+in p_cpf NUMERIC(11)
 )
 BEGIN
-    select id_divida, valor, credor from base_A where base_A.cpf = p_cpf; 
+    select id_divida, CAST(valor as CHAR(15)), CAST(credor AS CHAR(14)) from divida where divida.cpf = p_cpf; 
 END$$
 DELIMITER ;
+
+DELIMITER $$
+USE `base_A`$$
+CREATE PROCEDURE `BuscaPessoa` (
+    in p_cpf NUMERIC(11)
+)
+BEGIN
+    select nome, endereco from pessoa where cpf=p_cpf; 
+END$$
+DELIMITER ;
+
 
 DELIMITER $$
 USE `base_A`$$
@@ -61,5 +73,6 @@ insert into usuario
 END IF;
 END$$
 DELIMITER ;
+
 INSERT INTO usuario (username,password)
 VALUES ('joel','12345');
